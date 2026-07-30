@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BloxVault | Loja de Robux Barato e Entrega Instantânea</title>
+  <meta name="description" content="Compre Robux com o melhor preço do Brasil. Entrega 100% automática, segura e sem pedir sua senha. Pagamento via PIX e Cartão de Crédito.">
+  <meta name="keywords" content="comprar robux, robux barato, loja de robux, robux pix, roblox robux, robux seguro">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="BloxVault | Loja de Robux Barato">
+  <meta property="og:description" content="Os menores preços de Robux com entrega rápida e 100% segura sem senha!">
+  <meta property="og:image" content="assets/hero_banner.png">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="announcement-content">
+      <span class="pulse-badge">PROMOÇÃO</span>
+      <p>🔥 Bônus exclusivo ativado: Ganhe até <strong>+3.000 Robux grátis</strong> em compras hoje! | Entrega 24/7 sem pedir senha.</p>
+    </div>
+  </div>
+
+  <!-- Header / Navigation -->
+  <header class="main-header">
+    <div class="container header-container">
+      <a href="#" class="brand-logo">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5" fill="url(#robux-grad)" stroke="#FFD700" stroke-width="1.5"/>
+            <rect x="9" y="9" width="6" height="6" transform="rotate(45 12 12)" fill="#111827" stroke="#FFD700" stroke-width="1.5"/>
+            <defs>
+              <linearGradient id="robux-grad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#FFD700"/>
+                <stop offset="1" stop-color="#FFA500"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo-text">Blox<span class="highlight">Vault</span></span>
+      </a>
+
+      <nav class="nav-links" id="nav-links">
+        <a href="#pacotes" class="nav-link active">Pacotes</a>
+        <a href="#calculadora" class="nav-link">Calculadora</a>
+        <a href="#como-funciona" class="nav-link">Como Funciona</a>
+        <a href="#avaliacoes" class="nav-link">Avaliações</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn-track" id="btn-open-track">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <span>Rastrear Pedido</span>
+        </button>
+
+        <button class="cart-btn" id="cart-toggle-btn" aria-label="Abrir Carrinho">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sales Live Ticker -->
+  <div class="sales-ticker-container">
+    <div class="ticker-wrapper" id="ticker-wrapper">
+      <!-- Live ticker items will be rendered by JS -->
+    </div>
+  </div>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            <span>⚡ Entrega 100% Garantida & Sem Senha</span>
+          </div>
+
+          <h1 class="hero-title">
+            Os Melhores Preços de <span class="text-gradient">Robux</span> no Brasil!
+          </h1>
+
+          <p class="hero-description">
+            Economize até <strong>45% em relação ao preço oficial</strong>. Compre seus Robux via PIX com ativação instantânea no seu perfil do Roblox.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#pacotes" class="btn btn-primary btn-glow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/>
+              </svg>
+              Ver Pacotes com Desconto
+            </a>
+            <a href="#calculadora" class="btn btn-secondary">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="4" y="2" width="16" height="20" rx="2"/>
+                <line x1="8" y1="6" x2="16" y2="6"/>
+                <line x1="16" y1="14" x2="16" y2="18"/>
+                <path d="M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M8 18h.01M12 18h.01"/>
+              </svg>
+              Calculadora Customizada
+            </a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-value" id="stat-robux">+2.4M</span>
+              <span class="stat-label">Robux Entregues</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-value">4.9 / 5★</span>
+              <span class="stat-label">+1.800 Avaliações</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-value">0 min</span>
+              <span class="stat-label">Sem Pedir Senha</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-card-preview">
+            <img src="assets/hero_banner.png" alt="BloxVault Robux Banner" class="hero-img">
+            <div class="floating-tag tag-top">
+              <div class="tag-icon">⚡</div>
+              <div class="tag-info">
+                <strong>Entrega Rápida</strong>
+                <span>Via Gamepass ou Grupo</span>
+              </div>
+            </div>
+            <div class="floating-tag tag-bottom">
+              <div class="tag-icon">🔒</div>
+              <div class="tag-info">
+                <strong>100% Seguro</strong>
+                <span>Anti-ban & Oficial</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section class="packages-section" id="pacotes">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">ESCOLHA SEU PACOTE</span>
+          <h2 class="section-title">Pacotes de Robux em Destaque</h2>
+          <p class="section-desc">Selecione o pacote ideal para turbinar seu avatar, desbloquear gamepasses e itens exclusivos no Roblox.</p>
+        </div>
+
+        <div class="packages-grid" id="packages-grid">
+          <!-- Package cards inserted via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Custom Robux Calculator Section -->
+    <section class="calculator-section" id="calculadora">
+      <div class="container">
+        <div class="calculator-card">
+          <div class="calculator-header">
+            <div class="calc-badge">🎮 CALCULADORA PERSONALIZADA</div>
+            <h2>Quer uma quantidade exata de Robux?</h2>
+            <p>Ajuste o slider ou digite a quantidade desejada para ver o valor final com desconto automático!</p>
+          </div>
+
+          <div class="calculator-body">
+            <div class="calc-input-group">
+              <div class="robux-amount-display">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2">
+                  <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5" fill="rgba(255, 215, 0, 0.2)"/>
+                  <rect x="9" y="9" width="6" height="6" transform="rotate(45 12 12)" fill="#FFD700"/>
+                </svg>
+                <input type="number" id="calc-robux-input" value="2500" min="100" max="50000" step="50">
+                <span class="unit">R$ Robux</span>
+              </div>
+
+              <div class="range-slider-container">
+                <input type="range" id="calc-range" min="100" max="50000" step="100" value="2500">
+                <div class="range-marks">
+                  <span>100 R$</span>
+                  <span>10.000 R$</span>
+                  <span>25.000 R$</span>
+                  <span>50.000 R$</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="calc-result-box">
+              <div class="result-details">
+                <div class="res-row">
+                  <span>Preço Oficial Roblox:</span>
+                  <span class="old-price-strike" id="calc-official-price">R$ 155,00</span>
+                </div>
+                <div class="res-row highlight-row">
+                  <span>Preço BloxVault (com PIX):</span>
+                  <span class="final-price" id="calc-final-price">R$ 98,90</span>
+                </div>
+                <div class="res-row economy-row">
+                  <span>Você economiza:</span>
+                  <span class="economy-badge" id="calc-economy">R$ 56,10 (36% OFF)</span>
+                </div>
+              </div>
+
+              <button class="btn btn-primary btn-block btn-glow" id="btn-buy-custom">
+                Comprar <span id="calc-buy-robux-text">2.500</span> Robux por <span id="calc-buy-price-text">R$ 98,90</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works-section" id="como-funciona">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">SIMPLES E SEGURO</span>
+          <h2 class="section-title">Como funciona a entrega?</h2>
+          <p class="section-desc">Entregamos seus Robux diretamente em sua conta sem solicitar sua senha em momento algum.</p>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">01</div>
+            <div class="step-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <h3>Digite seu Nickname</h3>
+            <p>Informe o seu nome de usuário do Roblox. Não precisamos da sua senha nem de permissão de acesso.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">02</div>
+            <div class="step-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                <line x1="2" y1="10" x2="22" y2="10"></line>
+              </svg>
+            </div>
+            <h3>Pagamento via PIX ou Cartão</h3>
+            <p>Realize o pagamento seguro via PIX com aprovação instantânea e 5% de desconto extra.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">03</div>
+            <div class="step-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <h3>Receba seus Robux</h3>
+            <p>O sistema processa o envio automaticamente via Gamepass ou fundos de grupo em instantes!</p>
+          </div>
+        </div>
+
+        <div class="security-banner">
+          <div class="sec-icon">🛡️</div>
+          <div class="sec-text">
+            <h4>Garantia Anti-Ban & 100% de Proteção</h4>
+            <p>Nenhum método utilizado viola os termos do Roblox. Seus Robux são limpos e legítimos.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials / Reviews Section -->
+    <section class="reviews-section" id="avaliacoes">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">OPINIÃO DE QUEM JÁ COMPROU</span>
+          <h2 class="section-title">O que nossos clientes dizem</h2>
+          <p class="section-desc">Confira algumas das mais de 1.800 avaliações reais de jogadores que compraram conosco.</p>
+        </div>
+
+        <div class="reviews-filter">
+          <button class="filter-btn active" data-filter="all">Todas (1.842)</button>
+          <button class="filter-btn" data-filter="5star">5 Estrelas (1.790)</button>
+          <button class="filter-btn" data-filter="recent">Mais Recentes</button>
+        </div>
+
+        <div class="reviews-grid" id="reviews-grid">
+          <!-- Review cards will be generated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">TIRA-DÚVIDAS</span>
+          <h2 class="section-title">Perguntas Frequentes</h2>
+          <p class="section-desc">Tire suas dúvidas antes de realizar a compra.</p>
+        </div>
+
+        <div class="faq-accordion" id="faq-accordion">
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>É seguro comprar Robux na BloxVault? Preciso fornecer minha senha?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Sim, é 100% seguro! <strong>Nós NUNCA pediremos a sua senha.</strong> O envio dos Robux é feito através do sistema de Gamepass ou Fundos de Grupo oficial do Roblox. Sua conta fica totalmente protegida.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Quanto tempo demora para os Robux chegarem na minha conta?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Após a confirmação do pagamento via PIX, o envio é iniciado em questão de minutos. Caso seja envio via Gamepass (Robux pendentes), o Roblox credita os Robux na sua conta em 3 a 5 dias úteis, que é o prazo padrão da plataforma Roblox.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Quais são as formas de pagamento aceitas?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Aceitamos <strong>PIX</strong> (com desconto extra de 5% e aprovação em segundos), Cartões de Crédito (Visa, Mastercard, Elo) e Mercado Pago.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>O que acontece se eu digitar meu Nickname errado?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>No momento da compra nós exibimos a foto de perfil da sua conta Roblox para confirmação antes de gerar o pagamento. Se ainda assim houver erro, entre em contato imediatamente com nosso suporte no Discord/WhatsApp para corrigir.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Existe risco da minha conta ser banida?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Não! Nossos Robux provêm de métodos legítimos e originais de grupos do Roblox e vendas autorizadas. Nunca tivemos nenhum caso de banimento entre mais de 50.000 transações realizadas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container footer-container">
+      <div class="footer-col brand-col">
+        <div class="brand-logo">
+          <span class="logo-text">Blox<span class="highlight">Vault</span></span>
+        </div>
+        <p>A melhor e mais confiável loja de Robux do Brasil. Entrega rápida, preços baixos e atendimento 24 horas por dia.</p>
+        <div class="payment-methods">
+          <span class="pay-badge">PIX Instantâneo</span>
+          <span class="pay-badge">Cartão até 12x</span>
+          <span class="pay-badge">Mercado Pago</span>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#pacotes">Pacotes de Robux</a></li>
+          <li><a href="#calculadora">Calculadora Customizada</a></li>
+          <li><a href="#como-funciona">Como Funciona</a></li>
+          <li><a href="#avaliacoes">Avaliações</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Suporte & Ajuda</h4>
+        <ul>
+          <li><a href="#faq">Perguntas Frequentes</a></li>
+          <li><a href="#" id="footer-support-link">Atendimento no WhatsApp</a></li>
+          <li><a href="#" id="footer-discord-link">Comunidade no Discord</a></li>
+          <li><a href="#">Termos de Uso</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container bottom-flex">
+        <p>&copy; 2026 BloxVault. Todos os direitos reservados. Não somos afiliados à Roblox Corporation.</p>
+        <div class="ssl-tag">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <span>Conexão Segura SSL 256-Bit</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Checkout Drawer / Modal -->
+  <div class="modal-overlay" id="checkout-modal">
+    <div class="modal-card">
+      <button class="modal-close" id="modal-close-btn">&times;</button>
+      
+      <div class="modal-header">
+        <div class="step-indicator">
+          <div class="step-dot active" id="dot-step-1">1</div>
+          <div class="step-line" id="line-step-1"></div>
+          <div class="step-dot" id="dot-step-2">2</div>
+          <div class="step-line" id="line-step-2"></div>
+          <div class="step-dot" id="dot-step-3">3</div>
+        </div>
+        <h3 id="modal-title">Identifique sua conta Roblox</h3>
+      </div>
+
+      <div class="modal-body">
+        <!-- STEP 1: Roblox Username -->
+        <div class="modal-step-content active" id="step-1-content">
+          <p class="step-desc">Digite o seu <strong>Nickname exato</strong> do Roblox para sabermos em qual conta enviar os Robux:</p>
+          
+          <div class="username-input-wrapper">
+            <span class="at-symbol">@</span>
+            <input type="text" id="roblox-username-input" placeholder="Ex: PlayerRoblox123" autocomplete="off">
+            <button class="btn btn-secondary" id="btn-verify-user">Buscar Perfil</button>
+          </div>
+
+          <div class="user-preview-card hidden" id="user-preview-card">
+            <div class="user-avatar-circle">
+              <span id="user-avatar-initials">PR</span>
+            </div>
+            <div class="user-details">
+              <h4 id="preview-display-name">PlayerRoblox123</h4>
+              <span class="user-status-online">🟢 Conta Encontrada e Ativa</span>
+            </div>
+            <div class="check-icon">✓</div>
+          </div>
+
+          <div class="order-summary-box">
+            <h4>Resumo do Pedido</h4>
+            <div class="summary-row">
+              <span id="summary-item-name">Pacote 1.700 Robux</span>
+              <span id="summary-item-price">R$ 74,90</span>
+            </div>
+            <div class="summary-row bonus-row" id="summary-bonus-row">
+              <span>Bônus Promocional:</span>
+              <span id="summary-item-bonus">+150 Robux Grátis</span>
+            </div>
+            <div class="summary-row total-row">
+              <span>Total a pagar:</span>
+              <span id="summary-item-total" class="total-price">R$ 74,90</span>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-block btn-glow margin-top" id="btn-go-step-2" disabled>
+            Continuar para Pagamento
+          </button>
+        </div>
+
+        <!-- STEP 2: Payment Method selection -->
+        <div class="modal-step-content" id="step-2-content">
+          <p class="step-desc">Escolha como deseja pagar:</p>
+
+          <div class="payment-options">
+            <label class="pay-option-card selected" data-method="pix">
+              <input type="radio" name="pay_method" value="pix" checked>
+              <div class="pay-option-info">
+                <div class="pay-title">
+                  <strong>PIX Instantâneo</strong>
+                  <span class="badge-discount">-5% OFF</span>
+                </div>
+                <p>Aprovação imediata. Envio automático em instantes.</p>
+              </div>
+              <span class="radio-custom"></span>
+            </label>
+
+            <label class="pay-option-card" data-method="card">
+              <input type="radio" name="pay_method" value="card">
+              <div class="pay-option-info">
+                <div class="pay-title">
+                  <strong>Cartão de Crédito</strong>
+                </div>
+                <p>Parcele em até 12x no cartão de crédito.</p>
+              </div>
+              <span class="radio-custom"></span>
+            </label>
+          </div>
+
+          <button class="btn btn-primary btn-block btn-glow margin-top" id="btn-go-step-3">
+            Gerar Pagamento Seguro
+          </button>
+          <button class="btn-link" id="btn-back-step-1">← Voltar e alterar Nickname</button>
+        </div>
+
+        <!-- STEP 3: PIX Payment Display & Simulation -->
+        <div class="modal-step-content" id="step-3-content">
+          <div class="pix-payment-box">
+            <div class="timer-badge">
+              <span>⏳ O PIX expira em: <strong id="pix-timer">14:59</strong></span>
+            </div>
+
+            <div class="qr-code-placeholder">
+              <!-- Animated SVG PIX QR code -->
+              <svg width="180" height="180" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="200" height="200" rx="16" fill="#FFFFFF"/>
+                <!-- QR Code style matrix blocks -->
+                <rect x="15" y="15" width="50" height="50" fill="#000"/>
+                <rect x="25" y="25" width="30" height="30" fill="#FFF"/>
+                <rect x="33" y="33" width="14" height="14" fill="#000"/>
+                <rect x="135" y="15" width="50" height="50" fill="#000"/>
+                <rect x="145" y="25" width="30" height="30" fill="#FFF"/>
+                <rect x="153" y="33" width="14" height="14" fill="#000"/>
+                <rect x="15" y="135" width="50" height="50" fill="#000"/>
+                <rect x="25" y="145" width="30" height="30" fill="#FFF"/>
+                <rect x="33" y="153" width="14" height="14" fill="#000"/>
+                <rect x="80" y="20" width="20" height="40" fill="#000"/>
+                <rect x="80" y="70" width="40" height="20" fill="#000"/>
+                <rect x="130" y="80" width="50" height="20" fill="#000"/>
+                <rect x="20" y="80" width="40" height="20" fill="#000"/>
+                <rect x="80" y="110" width="40" height="40" fill="#000"/>
+                <rect x="140" y="130" width="40" height="50" fill="#000"/>
+                <rect x="100" y="160" width="30" height="20" fill="#000"/>
+                <!-- PIX Logo center icon -->
+                <circle cx="100" cy="100" r="22" fill="#32BCAD"/>
+                <path d="M93 96L97 100L107 90" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </div>
+
+            <p class="pix-instructions">Abra o aplicativo do seu banco e escaneie o código QR acima ou copie a chave PIX abaixo:</p>
+
+            <div class="pix-code-field">
+              <input type="text" readonly id="pix-copy-input" value="00020126580014br.gov.bcb.pix0136bloxvault-pix-98240-pagamento-robux520400005303986540574.905802BR5909BloxVault6009SAO PAULO620705031236304E2D1">
+              <button class="btn btn-secondary" id="btn-copy-pix">Copiar PIX</button>
+            </div>
+
+            <div class="simulated-payment-action">
+              <p class="sim-note">💡 <em>Ambiente de demonstração: Clique abaixo para simular o pagamento efetuado</em></p>
+              <button class="btn btn-success btn-block btn-glow" id="btn-simulate-paid">
+                ✓ Simular Pagamento Aprovado
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 4: Success Delivery Tracker -->
+        <div class="modal-step-content" id="step-4-content">
+          <div class="success-delivery-card">
+            <div class="success-icon-anim">🎉</div>
+            <h3>Pagamento Confirmado!</h3>
+            <p>Seus Robux estão sendo processados e transferidos para a conta <strong id="success-username">@PlayerRoblox</strong>.</p>
+
+            <div class="delivery-status-timeline">
+              <div class="timeline-step completed">
+                <span class="dot">✓</span>
+                <span>Pagamento Aprovado</span>
+              </div>
+              <div class="timeline-step active" id="status-step-2">
+                <span class="dot spinner-dot"></span>
+                <span>Conectando com Servidor Roblox</span>
+              </div>
+              <div class="timeline-step" id="status-step-3">
+                <span class="dot"></span>
+                <span>Envio de Robux Efetuado</span>
+              </div>
+            </div>
+
+            <div class="delivery-code-box">
+              <span>Código de Rastreio do Pedido:</span>
+              <strong id="order-tracking-id">BV-9842019</strong>
+            </div>
+
+            <button class="btn btn-primary btn-block margin-top" id="btn-finish-order">
+              Concluir e Voltar à Loja
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shopping Cart Side Drawer -->
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-drawer-header">
+      <h3>Seu Carrinho (<span id="cart-items-count">0</span>)</h3>
+      <button class="cart-close-btn" id="cart-close-btn">&times;</button>
+    </div>
+    <div class="cart-drawer-body" id="cart-drawer-body">
+      <div class="empty-cart-view" id="empty-cart-view">
+        <div class="empty-icon">🛒</div>
+        <p>Seu carrinho está vazio.</p>
+        <a href="#pacotes" class="btn btn-secondary" id="btn-browse-packages">Escolher Pacotes</a>
+      </div>
+      <div class="cart-items-list" id="cart-items-list">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+    <div class="cart-drawer-footer" id="cart-drawer-footer">
+      <div class="cart-total-row">
+        <span>Total:</span>
+        <strong id="cart-total-price">R$ 0,00</strong>
+      </div>
+      <button class="btn btn-primary btn-block btn-glow" id="btn-cart-checkout">
+        Finalizar Compra
+      </button>
+    </div>
+  </div>
+
+  <!-- Track Order Modal -->
+  <div class="modal-overlay" id="track-modal">
+    <div class="modal-card modal-small">
+      <button class="modal-close" id="track-modal-close">&times;</button>
+      <div class="modal-header">
+        <h3>Rastrear Pedido de Robux</h3>
+      </div>
+      <div class="modal-body">
+        <p>Digite o número do seu pedido ou Nickname para verificar o status de entrega:</p>
+        <div class="username-input-wrapper margin-top">
+          <input type="text" id="track-input" placeholder="Ex: BV-9842019 ou Nickname">
+          <button class="btn btn-primary" id="btn-do-track">Buscar</button>
+        </div>
+        <div class="track-result-box hidden" id="track-result-box">
+          <div class="track-status-badge">🟢 STATUS: EM PROCESSAMENTO</div>
+          <p class="track-details">Pedido para <strong>@PlayerRoblox</strong> - 1.700 Robux</p>
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" style="width: 75%;"></div>
+          </div>
+          <span class="progress-text">Processamento automático em andamento...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification System Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
