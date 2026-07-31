@@ -77,45 +77,45 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const livePurchasesData = [
-    { name: 'Lucas_Gamer99', amount: '1.700 Robux', time: 'há 1 min' },
-    { name: 'SofiaPlay_RB', amount: '4.500 Robux', time: 'há 3 min' },
-    { name: 'Matheus_Vip', amount: '800 Robux', time: 'há 5 min' },
-    { name: 'GabrielX_PRO', amount: '10.000 Robux', time: 'há 8 min' },
-    { name: 'Ana_Blox', amount: '400 Robux', time: 'há 12 min' },
-    { name: 'Kael_Roblox', amount: '22.500 Robux', time: 'há 15 min' }
+    { name: 'kaue_rblx', amount: '800 Robux', time: 'agora mesmo' },
+    { name: 'Bianca_joga', amount: '1.700 Robux', time: 'há 2 min' },
+    { name: 'vitor_gamer07', amount: '400 Robux', time: 'há 4 min' },
+    { name: 'larinha_rb', amount: '4.500 Robux', time: 'há 7 min' },
+    { name: 'thiagof2009', amount: '800 Robux', time: 'há 11 min' },
+    { name: 'MariaSol_rblx', amount: '1.700 Robux', time: 'há 18 min' }
   ];
 
   const reviewsData = [
     {
-      author: 'Matheus Santos',
-      avatar: 'MS',
+      author: 'Kauã Henrique',
+      avatar: 'KH',
       stars: 5,
-      text: 'Comprei 1.700 Robux e chegou em menos de 5 minutos! Fiquei com medo por ser a primeira vez, mas o suporte foi super atencioso. Recomendo muito!',
-      date: 'Ontem',
+      text: 'comprei 800 robux pra comprar uma gamepass no bloxburg, chegou normal. paguei no pix e não precisei dar senha nenhuma. voltarei a comprar',
+      date: 'ontem',
       category: '5star'
     },
     {
-      author: 'Beatriz Lima',
-      avatar: 'BL',
+      author: 'Larissa M.',
+      avatar: 'LM',
       stars: 5,
-      text: 'Preço incrivelmente mais barato que na loja do Roblox. Consegui comprar a gamepass que eu queria no Bloxburg!',
-      date: 'Há 2 dias',
+      text: 'tava desconfiada no começo mas chegou tudo certinho! 1700 robux pra mim e 400 pro meu irmão. o suporte respondeu rápido também quando fiz uma pergunta',
+      date: 'há 3 dias',
       category: '5star'
     },
     {
-      author: 'Pedro Henrique',
-      avatar: 'PH',
+      author: 'Pedro V.',
+      avatar: 'PV',
       stars: 5,
-      text: 'Muito bom! Não pediram minha senha em nenhum momento. Paguei no PIX e recebi na hora. Nota 10/10.',
-      date: 'Há 3 dias',
+      text: 'preco bom mesmo. na loja oficial ia pagar bem mais. demorou uns 2 dias pra cair mas avisaram que era assim. tranquilo',
+      date: 'há 5 dias',
       category: '5star'
     },
     {
-      author: 'Gabriel Miller',
-      avatar: 'GM',
+      author: 'Júlia Rocha',
+      avatar: 'JR',
       stars: 5,
-      text: 'Já é a 3ª vez que compro na BloxVault. Loja de extrema confiança!',
-      date: 'Há 5 dias',
+      text: 'segunda vez que compro aqui. sem enrolacao, sem pedir senha. so o nick mesmo. recomendo pra galera',
+      date: 'há 1 semana',
       category: 'recent'
     }
   ];
@@ -206,9 +206,9 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
 
           <ul class="pkg-features">
-            <li><span>✓</span> Entrega sem necessidade de senha</li>
-            <li><span>✓</span> Ativação Automática 24/7</li>
-            <li><span>✓</span> Suporte VIP Pós-venda</li>
+            <li><span>✓</span> Sem precisar da sua senha</li>
+            <li><span>✓</span> Enviado via gamepass ou grupo</li>
+            <li><span>✓</span> Suporte pelo WhatsApp</li>
           </ul>
         </div>
 
