@@ -492,10 +492,10 @@
               <input type="radio" name="pay_method" value="pix" checked>
               <div class="pay-option-info">
                 <div class="pay-title">
-                  <strong>PIX Instantâneo (Mercado Pago / Asaas)</strong>
+                  <strong>PIX Instantâneo</strong>
                   <span class="badge-discount">-5% OFF</span>
                 </div>
-                <p>Aprovação em segundos. Taxa zero para você e envio automático.</p>
+                <p>Aprovação imediata. Envio automático em instantes.</p>
               </div>
               <span class="radio-custom"></span>
             </label>
@@ -504,12 +504,18 @@
               <input type="radio" name="pay_method" value="card">
               <div class="pay-option-info">
                 <div class="pay-title">
-                  <strong>Cartão de Crédito (Até 12x)</strong>
+                  <strong>Cartão de Crédito</strong>
                 </div>
-                <p>Processamento seguro via Mercado Pago / Asaas.</p>
+                <p>Parcele em até 12x no cartão de crédito.</p>
               </div>
               <span class="radio-custom"></span>
             </label>
+          </div>
+
+          <!-- CPF para emissão da cobrança -->
+          <div class="cpf-field-group">
+            <label for="checkout-cpf">CPF do Pagador <span class="field-required">*</span></label>
+            <input type="text" id="checkout-cpf" placeholder="000.000.000-00" maxlength="14" autocomplete="off">
           </div>
 
           <button class="btn btn-primary btn-block btn-glow margin-top" id="btn-go-step-3">
@@ -525,45 +531,32 @@
               <span>⏳ O PIX expira em: <strong id="pix-timer">14:59</strong></span>
             </div>
 
-            <div class="qr-code-placeholder">
-              <!-- Animated SVG PIX QR code -->
-              <svg width="180" height="180" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="200" height="200" rx="16" fill="#FFFFFF"/>
-                <!-- QR Code style matrix blocks -->
-                <rect x="15" y="15" width="50" height="50" fill="#000"/>
-                <rect x="25" y="25" width="30" height="30" fill="#FFF"/>
-                <rect x="33" y="33" width="14" height="14" fill="#000"/>
-                <rect x="135" y="15" width="50" height="50" fill="#000"/>
-                <rect x="145" y="25" width="30" height="30" fill="#FFF"/>
-                <rect x="153" y="33" width="14" height="14" fill="#000"/>
-                <rect x="15" y="135" width="50" height="50" fill="#000"/>
-                <rect x="25" y="145" width="30" height="30" fill="#FFF"/>
-                <rect x="33" y="153" width="14" height="14" fill="#000"/>
-                <rect x="80" y="20" width="20" height="40" fill="#000"/>
-                <rect x="80" y="70" width="40" height="20" fill="#000"/>
-                <rect x="130" y="80" width="50" height="20" fill="#000"/>
-                <rect x="20" y="80" width="40" height="20" fill="#000"/>
-                <rect x="80" y="110" width="40" height="40" fill="#000"/>
-                <rect x="140" y="130" width="40" height="50" fill="#000"/>
-                <rect x="100" y="160" width="30" height="20" fill="#000"/>
-                <!-- PIX Logo center icon -->
-                <circle cx="100" cy="100" r="22" fill="#32BCAD"/>
-                <path d="M93 96L97 100L107 90" stroke="white" stroke-width="3" stroke-linecap="round"/>
-              </svg>
+            <!-- QR Code: exibe loading ou a imagem real -->
+            <div class="qr-code-placeholder" id="qr-code-wrapper">
+              <div class="qr-loading" id="qr-loading">
+                <div class="qr-spinner"></div>
+                <p>Gerando PIX...</p>
+              </div>
+              <img id="qr-code-img" src="" alt="QR Code PIX" width="180" height="180" style="display:none; border-radius:12px;">
             </div>
 
-            <p class="pix-instructions">Abra o aplicativo do seu banco e escaneie o código QR acima ou copie a chave PIX abaixo:</p>
+            <p class="pix-instructions">Abra o aplicativo do seu banco, escaneie o QR Code ou copie a chave PIX abaixo:</p>
 
             <div class="pix-code-field">
-              <input type="text" readonly id="pix-copy-input" value="00020126580014br.gov.bcb.pix0136bloxvault-pix-98240-pagamento-robux520400005303986540574.905802BR5909BloxVault6009SAO PAULO620705031236304E2D1">
+              <input type="text" readonly id="pix-copy-input" placeholder="Aguardando geração do PIX...">
               <button class="btn btn-secondary" id="btn-copy-pix">Copiar PIX</button>
             </div>
 
-            <div class="simulated-payment-action">
-              <p class="sim-note">💡 <em>Ambiente de demonstração: Clique abaixo para simular o pagamento efetuado</em></p>
+            <div class="simulated-payment-action" id="sim-payment-action" style="display:none">
+              <p class="sim-note">💡 <em>Modo demonstração ativo: Simule o pagamento abaixo</em></p>
               <button class="btn btn-success btn-block btn-glow" id="btn-simulate-paid">
                 ✓ Simular Pagamento Aprovado
               </button>
+            </div>
+
+            <div class="pix-status-waiting" id="pix-status-waiting" style="display:none">
+              <div class="pix-wait-spinner"></div>
+              <p>Aguardando confirmação do pagamento...</p>
             </div>
           </div>
         </div>

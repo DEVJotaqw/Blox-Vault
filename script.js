@@ -69,13 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   ];
 
-  // --- GATEWAY CONFIGURATION ---
-  // Substitua com suas credenciais do Mercado Pago ou Asaas para receber vendas reais na sua conta:
-  const GATEWAY_CONFIG = {
-    provider: 'mercadopago', // Opções: 'mercadopago' | 'asaas' | 'demo'
-    mercadoPagoPublicKey: 'APP_USR-YOUR-PUBLIC-KEY-HERE', // Chave Pública do Mercado Pago
-    asaasApiKey: '$aact_YOUR_ASAAS_API_KEY_HERE', // Chave API do Asaas
-    sandbox: true // Defina como false para ambiente de produção
+  // --- PAYMENT CONFIG ---
+  // Em produção, as chamadas vão para /api/create-payment (Vercel Function)
+  // A chave do Asaas fica segura no servidor, nunca no frontend.
+  const PAYMENT_CONFIG = {
+    isDemoMode: false // Mude para true para usar modo simulado sem API
   };
 
   const livePurchasesData = [
@@ -126,6 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let cart = [];
   let activeSelectedItem = null;
   let pixTimerInterval = null;
+  let paymentPollingInterval = null;
+  let currentPaymentId = null;
 
   // --- DOM ELEMENTS ---
   const packagesGrid = document.getElementById('packages-grid');
@@ -417,17 +417,39 @@ document.addEventListener('DOMContentLoaded', () => {
   // Modal Step Navigation Events
   btnGoStep2.addEventListener('click', () => goToStep(2));
   btnBackStep1.addEventListener('click', () => goToStep(1));
-  btnGoStep3.addEventListener('click', () => goToStep(3));
+
+  // Botão Gerar Pagamento: valida CPF e chama a API real
+  btnGoStep3.addEventListener('click', async () => {
+    const cpfInput = document.getElementById('checkout-cpf');
+    const cpf = cpfInput ? cpfInput.value.replace(/\D/g, '') : '';
+
+    if (cpf.length !== 11) {
+      showToast('Digite um CPF válido com 11 dígitos.', 'warning');
+      if (cpfInput) cpfInput.focus();
+      return;
+    }
+
+    // Verificar método de pagamento
+    const payMethod = document.querySelector('input[name="pay_method"]:checked')?.value || 'pix';
+    if (payMethod === 'card') {
+      showToast('Pagamento por cartão em breve! Use PIX por enquanto.', 'warning');
+      return;
+    }
+
+    goToStep(3);
+    await generateRealPix(cpf);
+  });
 
   modalCloseBtn.addEventListener('click', () => {
     checkoutModal.classList.remove('active');
     clearInterval(pixTimerInterval);
+    clearInterval(paymentPollingInterval);
   });
 
   // PIX Timer
   function startPixTimer() {
     clearInterval(pixTimerInterval);
-    let secondsLeft = 15 * 60; // 15 mins
+    let secondsLeft = 15 * 60;
     const timerDisplay = document.getElementById('pix-timer');
 
     pixTimerInterval = setInterval(() => {
@@ -435,11 +457,137 @@ document.addEventListener('DOMContentLoaded', () => {
       const m = Math.floor(secondsLeft / 60).toString().padStart(2, '0');
       const s = (secondsLeft % 60).toString().padStart(2, '0');
       if (timerDisplay) timerDisplay.textContent = `${m}:${s}`;
-
-      if (secondsLeft <= 0) {
-        clearInterval(pixTimerInterval);
-      }
+      if (secondsLeft <= 0) clearInterval(pixTimerInterval);
     }, 1000);
+  }
+
+  // ============================================================
+  // GERAÇÃO DE PIX REAL VIA ASAAS (/api/create-payment)
+  // ============================================================
+  async function generateRealPix(cpf) {
+    const username = robloxUsernameInput.value.trim() || 'Cliente';
+    const qrLoading = document.getElementById('qr-loading');
+    const qrImg = document.getElementById('qr-code-img');
+    const simAction = document.getElementById('sim-payment-action');
+    const pixWaiting = document.getElementById('pix-status-waiting');
+
+    // Reset visual
+    if (qrLoading) qrLoading.style.display = 'flex';
+    if (qrImg) qrImg.style.display = 'none';
+    if (simAction) simAction.style.display = 'none';
+    if (pixWaiting) pixWaiting.style.display = 'none';
+    if (pixCopyInput) pixCopyInput.value = '';
+
+    if (PAYMENT_CONFIG.isDemoMode) {
+      // Modo demo: mostra botão de simulação sem chamar a API
+      setTimeout(() => {
+        if (qrLoading) qrLoading.style.display = 'none';
+        if (simAction) simAction.style.display = 'block';
+      }, 800);
+      return;
+    }
+
+    try {
+      const payload = {
+        valor: activeSelectedItem?.price || 0,
+        cpf: cpf,
+        nomeCliente: username,
+        nicknameRoblox: username,
+        descricao: `Compra de Robux - ${activeSelectedItem?.title || 'BloxVault'}`
+      };
+
+      const response = await fetch('/api/create-payment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || 'Erro ao gerar pagamento.');
+      }
+
+      // Exibir QR Code real
+      currentPaymentId = data.paymentId;
+      if (qrImg && data.pix?.qrCodeImage) {
+        qrImg.src = `data:image/png;base64,${data.pix.qrCodeImage}`;
+        qrImg.style.display = 'block';
+      }
+      if (qrLoading) qrLoading.style.display = 'none';
+      if (pixCopyInput && data.pix?.copiaCola) {
+        pixCopyInput.value = data.pix.copiaCola;
+      }
+
+      // Mostrar spinner de aguardando confirmação
+      if (pixWaiting) pixWaiting.style.display = 'flex';
+
+      showToast('PIX gerado! Escaneie e pague para confirmar.', 'success');
+
+      // Iniciar polling para verificar se o pagamento foi confirmado
+      startPaymentPolling();
+
+    } catch (error) {
+      console.error('Erro ao gerar PIX:', error);
+      // Fallback: modo demo se API falhar
+      if (qrLoading) qrLoading.style.display = 'none';
+      if (simAction) simAction.style.display = 'block';
+      showToast(`Modo demo ativo. (${error.message})`, 'warning');
+    }
+  }
+
+  // ============================================================
+  // POLLING: Verifica a cada 5s se o pagamento foi confirmado
+  // ============================================================
+  function startPaymentPolling() {
+    clearInterval(paymentPollingInterval);
+    if (!currentPaymentId) return;
+
+    paymentPollingInterval = setInterval(async () => {
+      try {
+        const res = await fetch(`/api/check-payment?paymentId=${currentPaymentId}`);
+        const data = await res.json();
+
+        if (data.confirmed) {
+          clearInterval(paymentPollingInterval);
+          clearInterval(pixTimerInterval);
+          // Pagamento confirmado → ir para tela de sucesso
+          const username = robloxUsernameInput.value.trim() || 'PlayerRoblox';
+          document.getElementById('success-username').textContent = `@${username}`;
+          document.getElementById('order-tracking-id').textContent =
+            `BV-${Math.floor(100000 + Math.random() * 900000)}`;
+          goToStep(4);
+          showToast('🎉 Pagamento confirmado pelo Asaas!', 'success');
+          triggerDeliveryTimeline();
+        }
+      } catch (err) {
+        console.warn('Polling check-payment falhou:', err);
+      }
+    }, 5000); // Verifica a cada 5 segundos
+  }
+
+  // Anima a timeline de entrega após pagamento confirmado
+  function triggerDeliveryTimeline() {
+    setTimeout(() => {
+      const step2 = document.getElementById('status-step-2');
+      if (step2) {
+        step2.className = 'timeline-step completed';
+        step2.querySelector('.dot').textContent = '✓';
+      }
+      const step3 = document.getElementById('status-step-3');
+      if (step3) {
+        step3.className = 'timeline-step active';
+        step3.querySelector('.dot').className = 'dot spinner-dot';
+      }
+      setTimeout(() => {
+        if (step3) {
+          step3.className = 'timeline-step completed';
+          step3.querySelector('.dot').textContent = '✓';
+          step3.querySelector('.dot').classList.remove('spinner-dot');
+        }
+        showToast('🎉 Robux enviados! Aguarde o gamepass.', 'success');
+      }, 2000);
+    }, 2000);
   }
 
   // Copy PIX Code
@@ -449,33 +597,16 @@ document.addEventListener('DOMContentLoaded', () => {
     showToast('Código PIX Copia e Cola copiado com sucesso!', 'success');
   });
 
-  // Simulate Payment Paid
+  // Simulate Payment Paid (modo demo)
   btnSimulatePaid.addEventListener('click', () => {
+    clearInterval(paymentPollingInterval);
+    clearInterval(pixTimerInterval);
     const username = robloxUsernameInput.value.trim() || 'PlayerRoblox';
     document.getElementById('success-username').textContent = `@${username}`;
-    document.getElementById('order-tracking-id').textContent = `BV-${Math.floor(100000 + Math.random() * 900000)}`;
-    
+    document.getElementById('order-tracking-id').textContent =
+      `BV-${Math.floor(100000 + Math.random() * 900000)}`;
     goToStep(4);
-    clearInterval(pixTimerInterval);
-
-    // Simulate animated timeline progress
-    setTimeout(() => {
-      const step2 = document.getElementById('status-step-2');
-      step2.className = 'timeline-step completed';
-      step2.querySelector('.dot').textContent = '✓';
-
-      const step3 = document.getElementById('status-step-3');
-      step3.className = 'timeline-step active';
-      step3.querySelector('.dot').className = 'dot spinner-dot';
-
-      setTimeout(() => {
-        step3.className = 'timeline-step completed';
-        step3.querySelector('.dot').textContent = '✓';
-        step3.querySelector('.dot').classList.remove('spinner-dot');
-
-        showToast('🎉 Robux enviados com sucesso para sua conta!', 'success');
-      }, 2000);
-    }, 2000);
+    triggerDeliveryTimeline();
   });
 
   btnFinishOrder.addEventListener('click', () => {
