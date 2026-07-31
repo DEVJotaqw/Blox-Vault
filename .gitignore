@@ -1,0 +1,14 @@
+# Dependências
+node_modules/
+
+# Variáveis de ambiente (NUNCA enviar ao GitHub - contém chaves de API!)
+.env
+.env.local
+.env.production
+
+# Vercel
+.vercel
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
