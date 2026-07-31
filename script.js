@@ -69,6 +69,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   ];
 
+  // --- GATEWAY CONFIGURATION ---
+  // Substitua com suas credenciais do Mercado Pago ou Asaas para receber vendas reais na sua conta:
+  const GATEWAY_CONFIG = {
+    provider: 'mercadopago', // Opções: 'mercadopago' | 'asaas' | 'demo'
+    mercadoPagoPublicKey: 'APP_USR-YOUR-PUBLIC-KEY-HERE', // Chave Pública do Mercado Pago
+    asaasApiKey: '$aact_YOUR_ASAAS_API_KEY_HERE', // Chave API do Asaas
+    sandbox: true // Defina como false para ambiente de produção
+  };
+
   const livePurchasesData = [
     { name: 'Lucas_Gamer99', amount: '1.700 Robux', time: 'há 1 min' },
     { name: 'SofiaPlay_RB', amount: '4.500 Robux', time: 'há 3 min' },
